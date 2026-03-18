@@ -1,0 +1,115 @@
+body {
+   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+   margin: 0;
+   background-color: var(--light-bg);
+   color: var(--text-dark);
+}
+
+/* --- Botão Voltar --- */
+.back-nav {
+   padding: 20px;
+   margin: 0 auto;
+}
+
+.btn-voltar {
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+   text-decoration: none;
+   color: var(--primary-blue);
+   font-weight: 600;
+   transition: 0.3s;
+}
+
+.btn-voltar:hover {
+   color: var(--dark-blue);
+   transform: translateX(-5px);
+}
+
+/* --- Header --- */
+header {
+   text-align: center;
+   padding: 40px 20px;
+   background: var(--white);
+}
+
+header h1 {
+   font-size: 2.5rem;
+   margin: 0;
+   color: var(--dark-blue);
+   text-transform: uppercase;
+   letter-spacing: -1px;
+}
+
+header .subtitle {
+   color: #777;
+   margin-top: 10px;
+   font-size: 1.1rem;
+}
+
+/* --- Grid de Serviços --- */
+.main-container {
+   max-width: 1100px;
+   margin: 0 auto 60px;
+   padding: 0 20px;
+}
+
+.services-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+   gap: 20px;
+}
+
+.service-card {
+   background: var(--white);
+   border-radius: 16px;
+   padding: 30px 20px;
+   text-align: center;
+   text-decoration: none;
+   color: inherit;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.356);
+   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   border-bottom: 4px solid transparent;
+}
+
+.service-card:hover {
+   transform: translateY(-8px);
+   box-shadow: 0 12px 25px rgba(0, 71, 255, 0.1);
+   border-bottom: 4px solid var(--accent-yellow);
+}
+
+.icon-box {
+   width: 70px;
+   height: 70px;
+   background: var(--light-bg);
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 0 auto 20px;
+   color: var(--primary-blue);
+   font-size: 1.8rem;
+   transition: 0.3s;
+}
+
+.service-card:hover .icon-box {
+   background: var(--primary-blue);
+   color: var(--accent-yellow);
+}
+
+.service-card h3 {
+   margin: 0;
+   font-size: 1.2rem;
+   color: var(--dark-blue);
+}
+
+
+@media (max-width: 768px) {
+   .services-grid {
+      grid-template-columns: 1fr 1fr;
+   }
+
+   header h1 {
+      font-size: 1.8rem;
+   }
+}
