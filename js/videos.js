@@ -19,10 +19,19 @@ prevBtn.addEventListener('click', () => {
    });
 });
 
-const videos = document.querySelectorAll('.carousel-slide')
+const videos = document.querySelectorAll('.carousel-slide');
 
-videos.forEach(video => {
-   video.style.transform = 'translateY(0px)'
-   video.style.opacity = 1
-})
+// Executa a animação quando a página é carregada
+window.addEventListener('DOMContentLoaded', () => {
+   videos.forEach(video => {
+      video.style.transform = 'translateY(-10px)';
+      video.style.opacity = 0;
 
+      // Força o reflow para garantir que a transição seja aplicada
+      void video.offsetWidth;
+
+      video.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+      video.style.transform = 'translateY(0px)';
+      video.style.opacity = 1;
+   });
+});
