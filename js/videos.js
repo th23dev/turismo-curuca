@@ -18,3 +18,11 @@ prevBtn.addEventListener('click', () => {
       behavior: 'smooth'
    });
 });
+
+const videos = document.querySelectorAll('.carousel-slide')
+
+videos.forEach(video => {
+   video.style.transform = 'translateY(0px)'
+   video.style.opacity = 1
+})
+

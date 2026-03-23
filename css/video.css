@@ -41,7 +41,10 @@
                scroll-snap-align: start;
                scroll-snap-stop: always;
                box-sizing: border-box;
-
+               transform: translateY(-10px);
+               opacity: 0;
+               transition: transform 1s ease, opacity 0.7s ease;
+               
                .video-card {
                   background: white;
                   border-radius: 15px;
@@ -49,12 +52,7 @@
                   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.356);
                   transition: transform 0.3s ease;
 
-                  &:hover {
-                     transform: translateY(-10px);
-                     border-bottom: 5px solid var(--accent-yellow);
-                  }
-
-                  iframe {
+                  video {
                      width: 100%;
                      aspect-ratio: 16 / 9;
                      border: none;
@@ -117,8 +115,8 @@
    }
 
    .carousel-track .carousel-slide {
-      flex: 1 0 100%; /* ocupa toda a largura */
-      padding: 15px 0; /* espaçamento vertical */
+      flex: 1 0 100%;
+      padding: 15px 0;
    }
 
    .carousel-btn {
