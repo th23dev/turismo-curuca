@@ -1,11 +1,9 @@
-@import url('style.css');
-
 /* --- Grid de Serviços --- */
-
 .main-container {
    width: 100%;
    height: auto;
    padding: 40px 100px;
+   overflow: hidden;
 
    .parent {
       display: grid;
@@ -14,16 +12,15 @@
       gap: 20px;
 
       a {
-         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
          padding: 20px;
-         /* background-color: var(--light-bg); */
-         background-color: var(--primary-blue);
          border-radius: 10px;
          text-decoration: none;
          font-size: 20px;
          font-weight: bold;
          color: var(--light-bg);
          transition: 0.3s;
+         position: relative;
+         border-bottom: 5px solid var(--accent-yellow);
 
          &:hover {
             transform: translateY(-10px);
@@ -88,13 +85,13 @@
 }
 
 #MTUR {
-   background-color: #691391;
+   background-color: var(--primary-blue);
    grid-column-start: 6;
    grid-row-start: 2;
 }
 
 #SEMTUR {
-   background-color: #911391;
+   background-color: var(--primary-blue);
    grid-column-start: 6;
    grid-row-start: 3;
 }
@@ -134,3 +131,26 @@
    grid-column-start: 5;
    grid-row-start: 5;
 }
+
+@media (max-width: 768px) {
+   .main-container {
+      padding: 20px;
+
+      .parent {
+         grid-template-columns: 1fr;
+         grid-template-rows: auto;
+         gap: 20px;
+      }
+
+      .parent > * {
+         grid-column: auto !important;
+         grid-row: auto !important;
+      }
+
+      .parent a {
+         font-size: 18px;
+         text-align: center;
+      }
+   }
+}
+

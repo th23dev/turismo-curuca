@@ -78,7 +78,7 @@
 }
 
 .carousel-btn {
-   background: var(--primary-blue);
+   background: var(--dark-blue);
    color: white;
    border: none;
    width: 50px;
@@ -93,7 +93,6 @@
    flex-shrink: 0;
 
    &:hover {
-      background: var(--dark-blue);
       transform: scale(1.1);
    }
 }

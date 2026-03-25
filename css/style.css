@@ -129,20 +129,21 @@ nav {
 
 /* --- Botão Voltar --- */
 .back-nav {
+   background-color: var(--primary-blue);
    padding: 20px;
    margin: 0 auto;
+   color: var(--light-bg);
 
    .btn-voltar {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       text-decoration: none;
-      color: var(--primary-blue);
+      color: var(--light-bg);
       font-weight: 600;
       transition: 0.3s;
 
       &:hover {
-         color: var(--dark-blue);
          transform: translateX(-5px);
       }
    }
@@ -183,6 +184,10 @@ footer {
 @media (max-width: 768px) {
    .info-section {
       grid-template-columns: 1fr;
+
+      h2 {
+         font-size: 20px;
+      }
    }
 
    nav:has(.nav-links) {
@@ -204,7 +209,8 @@ footer {
    justify-content: center;
    align-items: center;
 
-   h1, i{
+   h1,
+   i {
       font-size: 50px;
       color: var(--primary-blue);
    }
