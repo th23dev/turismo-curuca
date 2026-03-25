@@ -1,0 +1,51 @@
+@import url('style.css');
+
+#contact-section {
+   width: 100%;
+   height: auto;
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 20px;
+   color: var(--dark-blue);
+
+   .contact {
+      background-color: var(--white);
+      width: 80%;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.356);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--dark-blue);
+      font-size: 20px;
+      font-weight: bold;
+      transition: 0.3s;
+
+      i {
+         width: 50px;
+         height: 50px;
+         background: var(--light-bg);
+         color: var(--dark-blue);
+         border-radius: 50%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         transition: 0.3s;
+      }
+
+      &:hover {
+         transform: translateY(-10px);
+         color: var(--accent-yellow);
+
+         i {
+            background-color: var(--dark-blue);
+            color: var(--accent-yellow);
+         }
+      }
+   }
+}
