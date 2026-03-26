@@ -19,7 +19,7 @@ body {
 }
 
 /* --- Navbar --- */
-nav {
+#main-nav {
    background: white;
    padding: 15px 5%;
    display: flex;
@@ -129,22 +129,41 @@ nav {
 
 /* --- Botão Voltar --- */
 .back-nav {
-   background-color: var(--primary-blue);
-   padding: 20px;
-   margin: 0 auto;
    color: var(--light-bg);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: end;
 
-   .btn-voltar {
-      display: inline-flex;
+   .text-box {
+      background-color: var(--primary-blue);
+      text-align: center;
+      width: 100%;
+      height: auto;
+      padding: 20px;
+   }
+
+   .btn-box {
+      background-color: var(--dark-blue);
+      width: 100%;
+      height: auto;
+      padding: 5px 20px;
+      margin-top: 2px solid var(--light-bg);
+      display: flex;
       align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: var(--light-bg);
-      font-weight: 600;
-      transition: 0.3s;
+      justify-content: space-between;
 
-      &:hover {
-         transform: translateX(-5px);
+      .btn-voltar {
+         align-items: center;
+         gap: 8px;
+         text-decoration: none;
+         color: var(--light-bg);
+         font-weight: 600;
+         transition: 0.3s;
+
+         &:hover {
+            transform: translateX(-5px);
+         }
       }
    }
 }

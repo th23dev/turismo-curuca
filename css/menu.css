@@ -20,7 +20,6 @@
          color: var(--light-bg);
          transition: 0.3s;
          position: relative;
-         border-bottom: 5px solid var(--accent-yellow);
 
          &:hover {
             transform: translateY(-10px);
@@ -50,15 +49,11 @@
    align-items: center;
    gap: 20px;
 
+   img,
    i {
-      color: var(--dark-blue);
-      background-color: var(--light-bg);
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 50px;
+      font-size: 30px;
+      text-align: center;
    }
 }
 
@@ -85,19 +80,19 @@
 }
 
 #MTUR {
-   background-color: var(--primary-blue);
+   background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
    grid-column-start: 6;
    grid-row-start: 2;
 }
 
 #SEMTUR {
-   background-color: var(--primary-blue);
+   background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
    grid-column-start: 6;
    grid-row-start: 3;
 }
 
 #igarapes {
-   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('../imgs/igarapes.jpg') no-repeat center center/cover;
+   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('../imgs/igarapes.jpeg') no-repeat center center/cover;
    grid-row: span 5 / span 5;
    grid-column-start: 3;
    grid-row-start: 4;
@@ -142,7 +137,7 @@
          gap: 20px;
       }
 
-      .parent > * {
+      .parent>* {
          grid-column: auto !important;
          grid-row: auto !important;
       }
@@ -150,7 +145,8 @@
       .parent a {
          font-size: 18px;
          text-align: center;
+         grid-column: span 3 / span 3;
+         grid-row: span 3 / span 3;
       }
    }
 }
-
