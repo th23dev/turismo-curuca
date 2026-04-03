@@ -129,7 +129,7 @@
 
 @media (max-width: 768px) {
    .main-container {
-      padding: 20px;
+      padding: 40px;
 
       .parent {
          grid-template-columns: 1fr;
@@ -143,10 +143,9 @@
       }
 
       .parent a {
-         font-size: 18px;
-         text-align: center;
-         grid-column: span 3 / span 3;
-         grid-row: span 3 / span 3;
+         font-size: 18px !important;
+         grid-column: span 2 / span 2 !important;
+         grid-row: span 6 / span 6 !important;
       }
    }
 }
