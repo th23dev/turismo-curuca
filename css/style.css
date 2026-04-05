@@ -66,7 +66,7 @@ body {
 /* --- Hero Section --- */
 .hero {
    height: 100vh;
-   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../imgs/cat.jpeg') no-repeat center center/cover;
+   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../imgs/cat.webp') no-repeat center center/cover;
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -129,7 +129,7 @@ body {
 
 /* --- Botão Voltar --- */
 .back-nav {
-   background:url('../imgs/navbar_bg.png') no-repeat center center/cover;
+   background:url('../imgs/navbar_bg.webp') no-repeat center center/cover;
    display: flex;
    flex-direction: column;
 
@@ -145,7 +145,6 @@ body {
 
    .btn-box {
       background-color: var(--dark-blue);
-      border-bottom: 4px solid var(--accent-yellow);
       width: 100%;
       height: auto;
       padding: 5px 20px;
