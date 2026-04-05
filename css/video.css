@@ -3,6 +3,7 @@
    padding: 20px 5%;
    background-color: var(--light-bg);
    text-align: center;
+   height: 90dvh;
 
    h2 {
       color: var(--primary-blue);
@@ -13,9 +14,11 @@
    .carousel-container {
       position: relative;
       max-width: 1300px;
+      height: 100%;
       margin: 0 auto;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 15px;
 
       .carousel-track-container {
