@@ -104,7 +104,6 @@
    grid-column-start: 4;
    grid-row-start: 5;
 }
-
 #cat {
    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('../imgs/cat.webp') no-repeat center center/cover;
    grid-row: span 5 / span 5;

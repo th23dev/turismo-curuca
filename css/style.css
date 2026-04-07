@@ -106,27 +106,6 @@ body {
 
 }
 
-/* --- Info Section (CAT) --- */
-.info-section {
-   padding: 80px 10%;
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   gap: 50px;
-   align-items: center;
-
-   img {
-      width: 100%;
-      border-radius: 15px;
-      box-shadow: 10px 10px 0px var(--accent-yellow);
-   }
-
-   h2 {
-      color: var(--primary-blue);
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-   }
-}
-
 /* --- Botão Voltar --- */
 .back-nav {
    background:url('../imgs/navbar_bg.webp') no-repeat center center/cover;
@@ -190,14 +169,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-   .info-section {
-      grid-template-columns: 1fr;
-
-      h2 {
-         font-size: 20px;
-      }
-   }
-
    #main-nav{
       justify-content: center;
 
