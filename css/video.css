@@ -100,25 +100,32 @@
    }
 }
 
-/* --- Responsividade --- */
-@media (max-width: 1024px) {
-   .carousel-track .carousel-slide {
-      flex: 0 0 50%;
-   }
-}
 
 @media (max-width: 768px) {
+   .carousel-container {
+      flex-direction: column;
+      gap: 20px;
+   }
+
+   .carousel-track-container {
+      overflow-x: hidden;   /* remove scroll horizontal */
+      overflow-y: auto;     /* permite scroll vertical */
+      scroll-snap-type: y mandatory; /* muda snap para vertical */
+      padding: 0;
+   }
+
    .carousel-track {
       flex-direction: column;
       gap: 30px;
    }
 
    .carousel-track .carousel-slide {
-      flex: 1 0 100%;
-      padding: 15px 0;
+      flex: 1 0 auto;       /* ocupa largura total */
+      padding: 0;
+      scroll-snap-align: start;
    }
 
    .carousel-btn {
-      display: none;
+      display: none;        /* oculta botões no mobile */
    }
 }
