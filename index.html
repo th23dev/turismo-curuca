@@ -10,18 +10,28 @@
 </head>
 <body>
 
-    <nav id="main-nav">
+    <nav id="main-nav" aria-label="Navegação principal">
         <div class="logo-area">
-            <img src="imgs/logo-sec-turismo.webp" alt="Secretaria de Turismo">
+            <img src="imgs/logo-sec-turismo.webp" alt="Secretaria de Turismo" class="logo-img">
+            <span class="logo-text">Turismo Curuçá</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="https://www.instagram.com/turismocuruca.oficial/" target="_blank">Instagram</a></li>
+        
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="pages/menu.html">Explore</a></li>
+            <li><a href="pages/contatos_uteis.html">Contatos</a></li>
         </ul>
     </nav>
 
     <section class="hero" id="inicio">
         <h1>Terminal de Navegação Turística</h1>
-        <p>A sua porta de entrada para as belezas naturais de Curuçá</p>
+        <p>A sua porta de entrada para as belezas naturais de Curuçá.</p>
         <a href="pages/menu.html" class="btn-start">NAVEGAR</a>
     </section>
 

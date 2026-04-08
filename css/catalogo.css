@@ -1,11 +1,10 @@
 /* --- Catálogo de Igarapés --- */
 .catalogo {
-   padding: 80px 10%;
-   background: var(--light-bg);
+   background: var(--bg);
    text-align: center;
 
    h2 {
-      color: var(--primary-blue);
+      color: var(--primary-color);
       font-size: 2.5rem;
       margin-bottom: 40px;
    }
@@ -18,16 +17,15 @@
 }
 
 .card {
-   background: white;
+   background: var(--secondary-bg);
    border-radius: 10px;
-   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+   box-shadow: var(--shadow);
    overflow: hidden;
    cursor: pointer;
    transition: transform 0.3s, box-shadow 0.3s;
 
    &:hover {
       transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
    }
 
    img {
@@ -38,7 +36,7 @@
 
    h3 {
       margin: 15px;
-      color: var(--dark-blue);
+      color: var(--main-text);
       font-weight: 600;
    }
 }
@@ -59,21 +57,22 @@
 }
 
 .modal-box {
-   background: var(--light-bg);
+   background: var(--bg);
    border-radius: 10px;
    width: 80%;
-   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+   height: auto;
    animation: slideUp 0.4s ease;
    display: flex;
    align-items: start;
    justify-content: center;
    position: relative;
    overflow: hidden;
-   max-height: 90vh;
 
-
-   img {
+   .img {
       width: 50%;
+      min-height: 400px;
+      background-size: cover;
+      background-position: center;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
    }
 
@@ -88,13 +87,13 @@
       gap: 20px;
 
       h2 {
-         color: var(--primary-blue);
+         color: var(--main-text);
          text-transform: uppercase;
          align-self: start;
       }
 
       p {
-         color: var(--text-dark);
+         color: var(--text-color);
       }
 
       .info-tags {
@@ -106,8 +105,8 @@
          transition: 0.3s;
 
          .tag {
-            background: var(--primary-blue);
-            color: white;
+            background: var(--primary-color);
+            color: var(--text-light);
             padding: 8px;
             width: auto;
             border-radius: 5px;
@@ -123,7 +122,7 @@
             }
 
             &:hover {
-               background-color: var(--dark-blue);
+               background-color: var(--dark-color);
                transform: translateY(-5px);
             }
          }
@@ -142,11 +141,11 @@
    right: 20px;
    font-size: 2rem;
    cursor: pointer;
-   color: var(--dark-blue);
+   color: var(--dark-color);
    transition: 0.3s;
 
    &:hover {
-      color: var(--accent-yellow);
+      color: var(--accent-color);
    }
 }
 
@@ -181,33 +180,29 @@
       padding: 10px;
       padding-top: 50px;
       justify-content: flex-start;
+   }
 
-      img {
-         width: 100%;
-         /* ocupa toda a largura */
-         height: auto;
-         /* mantém proporção */
-         border-radius: 10px;
+   .modal-box .img {
+      width: 100%;
+      height: auto; /* deixa a altura proporcional */
+      min-height: 200px; /* altura mínima para não ficar muito pequena */
+      border-radius: 10px;
+   }
+
+   .modal-box .text-box {
+      width: 100%;
+
+      h2 {
+         font-size: 1.2rem;
       }
 
-      .text-box {
-         width: 100%;
+      p {
+         font-size: 0.95rem;
+      }
 
-         h2 {
-            font-size: 1.2rem;
-         }
-
-         p {
-            font-size: 0.95rem;
-         }
-
-         .info-tags {
-
-            .tag {
-               font-size: 1rem;
-               max-width: 90%;
-            }
-         }
+      .info-tags .tag {
+         font-size: 1rem;
+         max-width: 90%;
       }
    }
 }

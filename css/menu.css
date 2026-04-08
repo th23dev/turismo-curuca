@@ -1,8 +1,8 @@
 /* --- Grid de Serviços --- */
 .main-container {
+   background-color: var(--bg);
    width: 100%;
    height: auto;
-   padding: 40px 100px;
    overflow: hidden;
 
    .parent {
@@ -17,7 +17,7 @@
          text-decoration: none;
          font-size: 20px;
          font-weight: bold;
-         color: var(--light-bg);
+         color: var(--text-light);
          transition: 0.3s;
          position: relative;
 
@@ -74,7 +74,7 @@
 }
 
 #SEBRAE {
-   background-color: var(--primary-blue);
+   background-color: var(--primary-color);
    grid-column-start: 6;
    grid-row-start: 1;
 }
@@ -128,8 +128,6 @@
 
 @media (max-width: 768px) {
    .main-container {
-      padding: 40px;
-
       .parent {
          grid-template-columns: 1fr;
          grid-template-rows: auto;
@@ -143,6 +141,7 @@
 
       .parent a {
          font-size: 18px !important;
+         padding: 10px !important;
          grid-column: span 2 / span 2 !important;
          grid-row: span 6 / span 6 !important;
       }

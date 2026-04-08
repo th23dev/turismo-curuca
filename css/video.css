@@ -1,12 +1,11 @@
 /* --- Video Carousel --- */
 .video-carousel-section {
-   padding: 20px 5%;
-   background-color: var(--light-bg);
+   background-color: var(--bg);
    text-align: center;
-   height: 90dvh;
+   height: 80dvh;
 
    h2 {
-      color: var(--primary-blue);
+      color: var(--main-text);
       font-size: clamp(1.8rem, 3vw, 2.5rem);
       margin-bottom: 40px;
    }
@@ -19,7 +18,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 20px;
 
       .carousel-track-container {
          overflow-x: scroll;
@@ -46,11 +45,12 @@
                box-sizing: border-box;
                
                .video-card {
-                  background: white;
+                  background: var(--secondary-bg);
                   border-radius: 15px;
                   overflow: hidden;
-                  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.356);
+                  box-shadow: var(--shadow);
                   transition: transform 0.3s ease;
+                  min-height: 400px;
 
                   video {
                      width: 100%;
@@ -63,14 +63,14 @@
                      text-align: left;
 
                      h3 {
-                        color: var(--dark-blue);
+                        color: var(--main-text);
                         margin-bottom: 8px;
                         font-size: 1.2rem;
                      }
 
                      p {
                         font-size: 0.9rem;
-                        color: #666;
+                        color: var(--text-color);
                      }
                   }
                }
@@ -81,8 +81,8 @@
 }
 
 .carousel-btn {
-   background: var(--dark-blue);
-   color: white;
+   background: var(--dark-color);
+   color: var(--text-light);
    border: none;
    width: 50px;
    height: 50px;

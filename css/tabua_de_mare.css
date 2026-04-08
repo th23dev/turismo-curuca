@@ -1,5 +1,4 @@
 :root {
-   --bg: #ffffff;
    --bg-secondary: #f5f4f0;
    --text: #1a1a18;
    --text-muted: #6b6b67;
@@ -17,8 +16,6 @@
 }
 
 .main-content {
-   padding: 20px 5%;
-
    .container {
       max-width: 900px;
       margin: 0 auto;
@@ -36,12 +33,12 @@ header {
 header h1 {
    font-size: 22px;
    font-weight: 500;
-   color: var(--primary-blue);
+   color: var(--primary-color);
 }
 
 header p {
    font-size: 13px;
-   color: var(--text-dark);
+   color: var(--text-color);
    margin-top: 4px;
 }
 
@@ -66,7 +63,7 @@ input[type="date"] {
 }
 
 input[type="date"]:focus {
-   box-shadow: 0 0 0 2px var(--primary-blue);
+   box-shadow: 0 0 0 2px var(--primary-color);
 }
 
 .btn {

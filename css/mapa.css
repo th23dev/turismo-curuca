@@ -2,8 +2,8 @@
 
 #map-section {
    width: 100%;
+   background-color: var(--bg);
    height: auto;
-   padding: 20px 10%;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -11,19 +11,19 @@
    gap: 20px;
 
    h2 {
-      color: var(--primary-blue);
+      color: var(--primary-color);
       font-size: clamp(1.8rem, 3vw, 2.5rem);
    }
 
    #map {
       width: 90%;
       border-radius: 10px;
-      box-shadow: 10px 10px 0 var(--accent-yellow);
+      box-shadow: 10px 10px 0 var(--accent-color);
    }
 
    p {
       font-size: 16px;
-      color: var(--text-dark);
+      color: var(--text-color);
    }
 }
 
