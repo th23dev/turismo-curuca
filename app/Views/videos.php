@@ -1,11 +1,10 @@
 <?php 
 include '../Core/conexao.php';
-$conexao = $mysqli;
+$conexao = $pdo;
 require_once '../Controllers/VideoController.php'; 
-require_once '../Models/VideoModel.php';
-$search = $_POST['search'] ?? $_GET['search'] ?? '';
 $controller = new VideoController($conexao);
-$sql_query = $controller->buscarVideos();
+$search = $_POST['search'] ?? $_GET['search'] ?? '';
+$videos = $controller->buscarVideos();
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +43,7 @@ $sql_query = $controller->buscarVideos();
       <section class="video-carousel-section">
          <div class="carousel-container">
 
-            <?php if ($sql_query->num_rows > 3): ?>
+            <?php if (count($videos) > 3): ?>
                <button class="carousel-btn prev" id="prevBtn">
                   <i class="fas fa-chevron-left"></i>
                </button>
@@ -53,8 +52,8 @@ $sql_query = $controller->buscarVideos();
             <div class="carousel-track-container">
                <ul class="carousel-track">
 
-                  <?php if ($sql_query->num_rows > 0): ?>
-                     <?php foreach ($sql_query as $video): ?>
+                  <?php if (count($videos) > 0): ?>
+                     <?php foreach ($videos as $video): ?>
                         <li class="carousel-slide">
                            <div class="video-card">
                               <video src="<?= $video['video'] ?>" controls preload></video>
@@ -71,7 +70,7 @@ $sql_query = $controller->buscarVideos();
 
                </ul>
             </div>
-            <?php if ($sql_query->num_rows > 3): ?>
+            <?php if (count($videos) > 3): ?>
                <button class="carousel-btn next" id="nextBtn">
                   <i class="fas fa-chevron-right"></i>
                </button>

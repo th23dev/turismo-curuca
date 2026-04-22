@@ -7,9 +7,11 @@ class VideoModel {
     }
 
     public function buscarVideos($search = '') {
-        $searchEscapado = $this->db->real_escape_string($search);
-        $sql = "SELECT * FROM videos WHERE titulo LIKE '%$searchEscapado%' OR descricao LIKE '%$searchEscapado%'";
-        return $this->db->query($sql);
+        $sql = "SELECT * FROM videos WHERE titulo LIKE ? OR descricao LIKE ?";
+        $stmt = $this->db->prepare($sql);
+        $like = "%{$search}%";
+        $stmt->execute([$like, $like]);
+        return $stmt->fetchAll();
     }
 }
 ?>

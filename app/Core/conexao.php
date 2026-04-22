@@ -1,12 +1,19 @@
 <?php
+session_start();
 $user = 'root';
 $password = '';
 $database = 'sec_turismo';
 $host = 'localhost';
 
-$mysqli = new mysqli($host, $user, $password, $database);
-
-if ($mysqli->error) {
-   die("Falha ao conectar ao banco de dados: " . $mysqli->error);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$database", $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false
+    ]);
+    global $pdo, $mysqli;
+    $mysqli = $pdo;  // Compatibility alias
+} catch (PDOException $e) {
+    die("Erro na conexão: " . $e->getMessage());
 }
 ?>

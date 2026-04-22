@@ -8,8 +8,7 @@ class IgarapeController {
         $this->model = new IgarapeModel($conexao);
     }
 
-    public function buscarIgarapes() {
-        $search = isset($_POST['search']) ? $_POST['search'] : '';
+    public function buscarIgarapes($search = '') {
         return $this->model->buscarIgarapes($search);
     }
 }

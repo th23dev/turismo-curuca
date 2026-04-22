@@ -1,17 +1,12 @@
 <?php 
 include '../Core/conexao.php';
-$conexao = $mysqli;
+$conexao = $pdo;
 require_once '../Controllers/PraiaController.php'; 
-require_once '../Models/PraiaModel.php';
-$search = $_POST['search'] ?? $_GET['search'] ?? '';
 $controller = new PraiaController($conexao);
-$sql_query = $controller->buscarPraias();
+$search = $_POST['search'] ?? $_GET['search'] ?? '';
+$sql_query = $controller->buscarPraias($search);
 
-$lugares = [];
-if ($sql_query && $sql_query->num_rows > 0) {
-  $lugares = $sql_query->fetch_all(MYSQLI_ASSOC);
-  $sql_query->data_seek(0);
-}
+$lugares = $sql_query;  // Already PDO::FETCH_ASSOC array
 ?>
 
 <!DOCTYPE html>

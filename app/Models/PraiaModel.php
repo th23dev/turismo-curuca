@@ -7,10 +7,11 @@ class PraiaModel {
     }
 
     public function buscarPraias($search = '') {
-        $searchEscapado = $this->db->real_escape_string($search);
-$sql = "SELECT * FROM lugares WHERE (nome LIKE '%$searchEscapado%' OR descricao LIKE '%$searchEscapado%') AND tipo = 'praia'";
-
-        return $this->db->query($sql);
+        $sql = "SELECT * FROM lugares WHERE (nome LIKE ? OR descricao LIKE ?) AND tipo = 'praia'";
+        $stmt = $this->db->prepare($sql);
+        $like = "%{$search}%";
+        $stmt->execute([$like, $like]);
+        return $stmt->fetchAll();
     }
 }
 ?>

@@ -1,17 +1,12 @@
 <?php 
 include '../Core/conexao.php';
-$conexao = $mysqli;
+$conexao = $pdo;
 require_once '../Controllers/IgarapeController.php'; 
-require_once '../Models/IgarapeModel.php';
-$search = $_POST['search'] ?? $_GET['search'] ?? '';
 $controller = new IgarapeController($conexao);
-$sql_query = $controller->buscarIgarapes();
+$search = $_POST['search'] ?? $_GET['search'] ?? '';
+$sql_query = $controller->buscarIgarapes($search);
 
-$lugares = [];
-if ($sql_query && $sql_query->num_rows > 0) {
-  $lugares = $sql_query->fetch_all(MYSQLI_ASSOC);
-  $sql_query->data_seek(0);
-}
+$lugares = $sql_query;  // Already PDO::FETCH_ASSOC array
 ?>
 
 <!DOCTYPE html>

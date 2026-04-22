@@ -1,14 +1,14 @@
 <?php 
 include '../Core/conexao.php';
 session_start();
-$mysqli = $mysqli;
+$pdo;  // Available globally
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    require_once '../Controllers/AuthController.php'; 
    require_once '../Models/UsuarioModel.php';
    $controller = new AuthController();
-   $controller->login($mysqli);
-} 
+   $controller->login($pdo);
+} ?>
 ?>
 
 <html lang="pt-br">
