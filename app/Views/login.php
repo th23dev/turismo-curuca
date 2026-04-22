@@ -48,20 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </section>
    </main>
 
-   <footer>
-      <div class="footer-logos">
-         <a href="https://www.sebrae.com.br/" target="_blank"><img src="../../public/imgs/logos-bg/logo-sebrae.webp" alt="sebrae"></a>
-         <a href="https://www.cidadeempreendedora.com.br/" target="_blank"><img src="../../public/imgs/logos-bg/logo-cidade-empreendedora.webp" alt="cidade empreendedora"></a>
-         <a href="https://www.instagram.com/mturismo/" target="_blank"><img src="../../public/imgs/logos-bg/logo-sec-turismo.webp" alt="secretaria de turismo Curuçá"></a>
-         <a href="https://www.instagram.com/prefeituracuruca/" target="_blank"><img src="../../public/imgs/logos-bg/logo-prefeitura-curuca.webp" alt="prefeitura de Curuçá"></a>
-      </div>
-      <div class="social-links">
-         <p>Siga-nos: @turismocuruca.oficial</p>
-      </div>
-      <hr style="border: 0.5px solid #444; margin-bottom: 20px;">
-      <p>&copy; 2026 - Prefeitura Municipal de Curuçá - Todos os direitos reservados.</p>
-      <p>Desenvolvedor - <a href="https://github.com/th23dev" target="_blank">Th23dev</a> - <a href="https://instagram.com/th23_dev" target="_blank">@th23_dev</a></p>
-   </footer>
+   <?php include 'components/footer.php'; ?>
 
 </body>
 

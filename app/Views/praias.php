@@ -1,12 +1,10 @@
 <?php 
 include '../Core/conexao.php';
-$conexao = $pdo;
-require_once '../Controllers/PraiaController.php'; 
-$controller = new PraiaController($conexao);
-$search = $_POST['search'] ?? $_GET['search'] ?? '';
-$sql_query = $controller->buscarPraias($search);
+require_once '../Controllers/LugaresController.php'; 
 
-$lugares = $sql_query;  // Already PDO::FETCH_ASSOC array
+$controller = new LugaresController($pdo, 'praia');
+$search = $_POST['search'] ?? $_GET['search'] ?? '';
+$lugares = $controller->buscarLugares();
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +24,7 @@ $lugares = $sql_query;  // Already PDO::FETCH_ASSOC array
          <h1>Praias</h1>
       </div>
       <div class="btn-box">
-         <a href="menu.html" class="btn-voltar">
+         <a href="menu.php" class="btn-voltar">
             <i class="fas fa-chevron-left"></i> Voltar
          </a>
 
@@ -44,7 +42,7 @@ $lugares = $sql_query;  // Already PDO::FETCH_ASSOC array
    <main>
       <section class="catalogo">
          <div class="cards-grid">
-            <?php if (count($lugares) > 0): ?>
+            <?php if ($lugares > 0): ?>
                <?php foreach ($lugares as $lugar): ?>
                   <div class="card" onclick="openModal('praia-<?php echo $lugar['id']; ?>')">
                      <img src="<?php echo $lugar['imagem_principal']; ?>" alt="<?php echo $lugar['nome']; ?>">
@@ -75,7 +73,6 @@ $lugares = $sql_query;  // Already PDO::FETCH_ASSOC array
             <h2><?php echo $lugar['nome']; ?></h2>
             <p><?php echo $lugar['descricao']; ?></p>
             <div class="info-tags">
-               <span class="tag"><i class="fas fa-phone"></i><?php echo $lugar['numero']; ?></span>
                <?php if (!empty($lugar['instagram'])): ?>
                <a class="tag insta" href="https://www.instagram.com/<?php echo $lugar['instagram']; ?>/" target="_blank">
                   <i class="fab fa-instagram"></i>@<?php echo $lugar['instagram']; ?>
@@ -90,20 +87,7 @@ $lugares = $sql_query;  // Already PDO::FETCH_ASSOC array
    </div>
    <?php endforeach; ?>
 
-   <footer>
-      <div class="footer-logos">
-         <a href="https://www.sebrae.com.br/" target="_blank"><img src="../../public/imgs/logos-bg/logo-sebrae.webp" alt="sebrae"></a>
-         <a href="https://www.cidadeempreendedora.com.br/" target="_blank"><img src="../../public/imgs/logos-bg/logo-cidade-empreendedora.webp" alt="cidade empreendedora"></a>
-         <a href="https://www.instagram.com/mturismo/" target="_blank"><img src="../../public/imgs/logos-bg/logo-sec-turismo.webp" alt="secretaria de turismo Curuçá"></a>
-         <a href="https://www.instagram.com/prefeituracuruca/" target="_blank"><img src="../../public/imgs/logos-bg/logo-prefeitura-curuca.webp" alt="prefeitura de Curuçá"></a>
-      </div>
-      <div class="social-links">
-         <p>Siga-nos: @turismocuruca.oficial</p>
-      </div>
-      <hr style="border: 0.5px solid #444; margin-bottom: 20px;">
-      <p>&copy; 2026 - Prefeitura Municipal de Curuçá - Todos os direitos reservados.</p>
-      <p>Desenvolvedor - <a href="https://github.com/th23dev" target="_blank">Th23dev</a> - <a href="https://instagram.com/th23_dev" target="_blank">@th23_dev</a></p>
-   </footer>
+   <?php include 'components/footer.php'; ?>
 
 </body>
 <script src="../../public/js/script.js"></script>

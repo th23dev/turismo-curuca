@@ -58,7 +58,7 @@ if (!isset($_SESSION)) {
         <div class="hero-overlay"></div>
         <h1>Terminal de Navegação Turística</h1>
         <p>A sua porta de entrada para as belezas naturais de Curuçá.</p>
-        <a href="../app/Views/menu.html" class="btn-start">NAVEGAR</a>
+        <a href="../app/Views/menu.php" class="btn-start">NAVEGAR</a>
     </section>
 
     <footer>
