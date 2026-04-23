@@ -63,6 +63,10 @@ $lugares = $controller->buscarLugares();
          <div class="image-carousel">
             <div class="carousel-images">
                <div class="carousel-image" style="background-image: url('<?php echo $lugar['imagem_principal']; ?>');"></div>
+               <!-- imagens com join para cada local, como fazer para mostrar todas as imagens treladas? -->
+                <?php foreach ($lugar['url'] as $imagem): ?>
+               <div class="carousel-image" style="background-image: url('<?php echo $imagem; ?>');"></div>
+               <?php endforeach; ?>
             </div>
             <button class="carousel-btn prev" onclick="prevImage('hotel-<?php echo $lugar['id']; ?>')">&10094;</button>
             <button class="carousel-btn next" onclick="nextImage('hotel-<?php echo $lugar['id']; ?>')">&10095;</button>

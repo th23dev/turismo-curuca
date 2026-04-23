@@ -1,14 +1,12 @@
 <?php 
 include '../Core/conexao.php';
-session_start();
-$pdo;  // Available globally
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    require_once '../Controllers/AuthController.php'; 
    require_once '../Models/UsuarioModel.php';
    $controller = new AuthController();
    $controller->login($pdo);
-} ?>
+}
 ?>
 
 <html lang="pt-br">
@@ -39,10 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          <form action="" method="post">
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" required><br><br>
-
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required><br><br>
-
             <button type="submit">Entrar</button>
          </form>
       </section>
@@ -51,5 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    <?php include 'components/footer.php'; ?>
 
 </body>
+
+<script src="../../public/js/script.js"></script>
 
 </html>

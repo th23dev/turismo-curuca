@@ -4,30 +4,23 @@
    align-items: center;
    justify-content: center;
    height: 80vh;
-   background: linear-gradient(135deg, var(--bg), var(--secondary-bg));
+   background: var(--bg);
 
    form {
+      background-color: var(--secondary-bg);
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      background-color: var(--secondary-bg);
-      padding: 30px;
-      border-radius: 12px;
+      padding: 20px;
+      border-radius: 10px;
       box-shadow: var(--shadow);
       width: 100%;
       max-width: 350px;
 
-      h2 {
-         color: var(--main-text);
-         text-align: center;
-         margin-bottom: 10px;
-         font-weight: 600;
-      }
-
       input {
          padding: 12px;
-         border-radius: 8px;
-         border: 1px solid var(--text-color);
+         border-radius: 5px;
+         background-color: var(--bg);
+         border: none;
          font-size: 15px;
          transition: all 0.3s ease;
 
@@ -51,28 +44,6 @@
 
          &:hover {
             background: var(--dark-color);
-            transform: translateY(-2px);
-         }
-
-         &:active {
-            transform: scale(0.98);
-         }
-      }
-
-      .extra-links {
-         display: flex;
-         justify-content: space-between;
-         font-size: 14px;
-
-         a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-
-            &:hover {
-               color: var(--dark-color);
-               text-decoration: underline;
-            }
          }
       }
    }

@@ -31,5 +31,5 @@
    <?php include 'components/footer.php'; ?>
 
 </body>
-<script src="../js/script.js"></script>
+<script src="../../public/js/script.js"></script>
 </html>

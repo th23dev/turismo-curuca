@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 }
 
 if (!isset($_SESSION['id'])) {
-   header("Location: ../pages/login.php");
+   header("Location: ../Views/login.php");
    die();
 }
 ?>

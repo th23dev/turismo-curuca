@@ -69,5 +69,6 @@
    <?php include 'components/footer.php'; ?>
 </body>
 <script src="../../public/js/api_tabua_de_mare.js"></script>
+<script src="../../public/js/script.js"></script>
 
 </html>
