@@ -6,7 +6,7 @@
          <a href="https://www.instagram.com/prefeituracuruca/" target="_blank"><img src="../../public/imgs/logos-bg/logo-prefeitura-curuca.webp" alt="prefeitura de Curuçá"></a>
       </div>
       <div class="social-links">
-         <p>Siga-nos: @turismocuruca.oficial</p>
+         <a href="https://www.instagram.com/turismocuruca.oficial">Siga-nos: @turismocuruca.oficial</a>
       </div>
       <hr style="border: 0.5px solid #444; margin-bottom: 20px;">
       <p>&copy; 2026 - Prefeitura Municipal de Curuçá - Todos os direitos reservados.</p>
