@@ -63,9 +63,14 @@ if ($tipo) {
             </div>
 
             <div class="cards">
-               <div class="card-lugar" id="add-lugar"><i class="fas fa-plus"></i></div>
+               <a href="criar.php" class="card-lugar" id="add-lugar"><i class="fas fa-plus"></i></a>
                <?php foreach ($lugares as $lugar): ?>
-                  <div class="card-lugar" style="background: url('<?= $lugar['imagem_principal']; ?>') no-repeat center center / cover;">
+                  <?php if (!empty($lugar['imagem_principal'])): ?>
+                     <div class="card-lugar" style="background: url('<?= $lugar['imagem_principal']; ?>') no-repeat center center / cover;">
+                  <?php else: ?>
+                     <div class="card-lugar card-lugar-empty">
+                        <i class="fas fa-image"></i>
+                  <?php endif; ?>
                      <?php echo $lugar['nome']; ?>
                      <a href="editar.php?id=<?php echo $lugar['id']; ?>">Editar</a>
                   </div>

@@ -4,26 +4,17 @@ include('../Controllers/protect.php');
 include('../Controllers/LugaresController.php');
 
 $controller = new LugaresController($pdo);
-
-$id = isset($_GET['id']) ? $_GET['id'] : null;
-$lugar = null;
 $mensagem = '';
+$erro = '';
 
-if ($id) {
-   $lugar = $controller->buscarLugar($id);
-}
-
-if (!$lugar && $id) {
-    echo "Lugar não encontrado!";
-    exit;
-}
-
-// Processa o formulário se enviado
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $lugar) {
-    // Aqui você pode adicionar a lógica de atualização no controller/model
-    $mensagem = 'Alterações salvas com sucesso!';
-    // Recarrega os dados atualizados
-    $lugar = $controller->buscarLugar($id);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $resultado = $controller->criarLocal($_POST);
+    if ($resultado) {
+        $mensagem = 'Local criado com sucesso!';
+        header('location: admin.php');
+    } else {
+        $erro = 'Erro ao criar o local. Tente novamente.';
+    }
 }
 ?>
 
@@ -33,14 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $lugar) {
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Turismo Curuçá - Editar <?= htmlspecialchars($lugar['nome'] ?? '') ?></title>
+   <title>Turismo Curuçá - Criar Novo Local</title>
    <link rel="stylesheet" href="../../public/css/conexao.css">
 </head>
 
 <body>
    <nav class="back-nav">
       <div class="text-box">
-         <h1>Editar <?= htmlspecialchars($lugar['nome'] ?? '') ?></h1>
+         <h1>Criar Novo Local</h1>
       </div>
       <div class="btn-box">
          <a href="admin.php" class="btn-voltar">
@@ -59,20 +50,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $lugar) {
                <i class="fas fa-check-circle"></i> <?= $mensagem ?>
             </div>
          <?php endif; ?>
+         <?php if ($erro): ?>
+            <div class="alert alert-erro">
+               <i class="fas fa-exclamation-circle"></i> <?= $erro ?>
+            </div>
+         <?php endif; ?>
 
          <form action="" method="post" class="editar-form">
             <!-- Preview da Imagem -->
             <div class="form-group image-preview-group">
                <label>Preview da Imagem Principal</label>
                <div class="image-preview-box">
-                  <img id="preview-img" src="<?= htmlspecialchars($lugar['imagem_principal'] ?? '') ?>" alt="Preview">
-                  <div class="image-placeholder" id="image-placeholder" style="display: <?= ($lugar['imagem_principal'] ?? '') ? 'none' : 'flex' ?>;">
+                  <img id="preview-img" src="" alt="Preview" style="display: none;">
+                  <div class="image-placeholder" id="image-placeholder" style="display: flex;">
                      <i class="fas fa-image"></i>
                      <span>Nenhuma imagem selecionada</span>
                   </div>
                </div>
-               <input type="text" name="imagem_principal" id="imagem_principal" placeholder="URL da imagem principal"
-                  value="<?= htmlspecialchars($lugar['imagem_principal'] ?? '') ?>">
+               <input type="text" name="imagem_principal" id="imagem_principal" placeholder="URL da imagem principal">
             </div>
 
             <!-- Informações Básicas -->
@@ -81,15 +76,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $lugar) {
                <div class="form-row">
                   <div class="form-group">
                      <label for="nome">Nome do Local</label>
-                     <input type="text" name="nome" id="nome" placeholder="Ex: Praia do Farol"
-                        value="<?= htmlspecialchars($lugar['nome'] ?? '') ?>">
+                     <input type="text" name="nome" id="nome" placeholder="Ex: Praia do Farol">
                   </div>
                   <div class="form-group">
                      <label for="tipo">Tipo</label>
-                     <select name="tipo" id="tipo">
-                        <option value="Hotel" <?= ($lugar['tipo'] ?? '') === 'Hotel' ? 'selected' : '' ?>>Hotel</option>
-                        <option value="Igarapé" <?= ($lugar['tipo'] ?? '') === 'Igarape' ? 'selected' : '' ?>>Igarapé</option>
-                        <option value="Praia" <?= ($lugar['tipo'] ?? '') === 'Praia' ? 'selected' : '' ?>>Praia</option>
+
+                        <option value="Hotel">Hotel</option>
+                        <option value="Igarapé">Igarapé</option>
+                        <option value="Praia">Praia</option>
                      </select>
                   </div>
                </div>
@@ -101,15 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $lugar) {
                <div class="form-row">
                   <div class="form-group">
                      <label for="numero">Número de Telefone</label>
-                     <input type="text" name="numero" id="numero" placeholder="Ex: (91) 99999-9999"
-                        value="<?= htmlspecialchars($lugar['numero'] ?? '') ?>">
+                     <input type="text" name="numero" id="numero" placeholder="Ex: (91) 99999-9999">
                   </div>
                   <div class="form-group">
                      <label for="instagram">Arroba do Instagram</label>
                      <div class="input-icon">
                         <i class="fab fa-instagram"></i>
-                        <input type="text" name="instagram" id="instagram" placeholder="Ex: @curuca_turismo"
-                           value="<?= htmlspecialchars($lugar['instagram'] ?? '') ?>">
+                        <input type="text" name="instagram" id="instagram" placeholder="Ex: @curuca_turismo">
                      </div>
                   </div>
                </div>
@@ -117,8 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $lugar) {
                   <label for="linkInstagram">Link do Instagram</label>
                   <div class="input-icon">
                      <i class="fas fa-link"></i>
-                     <input type="text" name="linkInstagram" id="linkInstagram" placeholder="https://instagram.com/..."
-                        value="<?= htmlspecialchars($lugar['linkInstagram'] ?? '') ?>">
+                     <input type="text" name="linkInstagram" id="linkInstagram" placeholder="https://instagram.com/...">
                   </div>
                </div>
             </div>
@@ -128,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $lugar) {
                <h3><i class="fas fa-align-left"></i> Descrição</h3>
                <div class="form-group">
                   <label for="descricao">Sobre o local</label>
-                  <textarea name="descricao" id="descricao" placeholder="Descreva o local, atrações, diferenciais..." rows="5"><?= htmlspecialchars($lugar['descricao'] ?? '') ?></textarea>
+                  <textarea name="descricao" id="descricao" placeholder="Descreva o local, atrações, diferenciais..." rows="5"></textarea>
                </div>
             </div>
 
@@ -138,8 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $lugar) {
                <div class="form-group toggle-group">
                   <span class="toggle-label">Possui restaurante no local?</span>
                   <label class="toggle-switch">
-                     <input type="checkbox" name="restaurante" value="sim" id="restaurante-toggle"
-                        <?= ($lugar['possui_restaurante'] ?? '') === 'sim' ? 'checked' : '' ?>>
+                     <input type="checkbox" name="restaurante" value="sim" id="restaurante-toggle">
                      <span class="toggle-slider"></span>
                   </label>
                   <input type="hidden" name="restaurante" value="nao" id="restaurante-hidden">
@@ -149,13 +139,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $lugar) {
             <!-- Ações -->
             <div class="form-actions">
                <button type="submit" class="btn-salvar">
-                  <i class="fas fa-save"></i> Salvar Alterações
+                  <i class="fas fa-plus"></i> Criar Local
                </button>
                <a href="admin.php" class="btn-cancelar">
                   <i class="fas fa-times"></i> Cancelar
-               </a>
-               <a href="excluir.php?id=<?php echo $lugar['id'];?>" class=" btn-cancelar btn-excluir">
-                  <i class="fas fa-times"></i> Excluir
                </a>
             </div>
          </form>
@@ -208,3 +195,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $lugar) {
 </body>
 
 </html>
+

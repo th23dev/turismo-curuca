@@ -8,6 +8,22 @@ class LugaresModel
         $this->db = $conexao;
     }
 
+    public function criarLocal($imagem_principal, $nome, $tipo, $numero, $instagram, $linkInstagram, $descricao, $possui_restaurante)
+    {
+        $sql = "INSERT INTO lugares (imagem_principal, nome, tipo, numero, instagram, linkInstagram, descricao, possui_restaurante) 
+                VALUES (:imagem_principal, :nome, :tipo, :numero, :instagram, :linkInstagram, :descricao, :possui_restaurante)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':imagem_principal', $imagem_principal, PDO::PARAM_STR);
+        $stmt->bindValue(':nome', $nome, PDO::PARAM_STR);
+        $stmt->bindValue(':tipo', $tipo, PDO::PARAM_STR);
+        $stmt->bindValue(':numero', $numero, PDO::PARAM_STR);
+        $stmt->bindValue(':instagram', $instagram, PDO::PARAM_STR);
+        $stmt->bindValue(':linkInstagram', $linkInstagram, PDO::PARAM_STR);
+        $stmt->bindValue(':descricao', $descricao, PDO::PARAM_STR);
+        $stmt->bindValue(':possui_restaurante', $possui_restaurante, PDO::PARAM_STR);
+        return $stmt->execute();
+    }
+
     public function buscarLugares($search = '', $tipo = '')
     {
         $lugaresSql = "SELECT DISTINCT * FROM lugares WHERE (nome LIKE :likeNome OR descricao LIKE :likeDescricao) AND tipo like :tipo ORDER BY nome";
@@ -71,5 +87,12 @@ class LugaresModel
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function excluirLugar($id){
+        $sql = "DELETE FROM lugares WHERE id = :id;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_STR);
+        $stmt->execute();
     }
 }

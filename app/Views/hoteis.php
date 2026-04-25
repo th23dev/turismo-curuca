@@ -45,7 +45,11 @@ $lugares = $controller->buscarLugares('hotel');
             <?php if ($lugares > 0): ?>
                <?php foreach ($lugares as $lugar): ?>
                   <div class="card" onclick="openModal('hotel-<?php echo $lugar['id']; ?>')">
-                     <img src="<?php echo $lugar['imagem_principal']; ?>" alt="<?php echo $lugar['nome']; ?>">
+                     <?php if (!empty($lugar['imagem_principal'])): ?>
+                        <img src="<?php echo $lugar['imagem_principal']; ?>" alt="<?php echo $lugar['nome']; ?>">
+                     <?php else: ?>
+                        <div class="card-image-placeholder"><i class="fas fa-hotel"></i></div>
+                     <?php endif; ?>
                      <h3><?php echo $lugar['nome']; ?></h3>
                   </div>
                <?php endforeach; ?>
@@ -62,7 +66,11 @@ $lugares = $controller->buscarLugares('hotel');
          <span class="close" onclick="closeModal('hotel-<?php echo $lugar['id']; ?>')">&times;</span>
          <div class="image-carousel">
             <div class="carousel-images">
+               <?php if (!empty($lugar['imagem_principal'])): ?>
                <div class="carousel-image" style="background-image: url('<?php echo $lugar['imagem_principal']; ?>');"></div>
+               <?php else: ?>
+               <div class="carousel-image carousel-image-empty"><i class="fas fa-hotel"></i></div>
+               <?php endif; ?>
                <!-- imagens com join para cada local, como fazer para mostrar todas as imagens treladas? -->
                 <?php foreach ($lugar['url'] as $imagem): ?>
                <div class="carousel-image" style="background-image: url('<?php echo $imagem; ?>');"></div>

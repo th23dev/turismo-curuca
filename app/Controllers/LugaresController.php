@@ -25,4 +25,22 @@ class LugaresController
     {
         return $this->model->buscarLugar($id);
     }
+
+    public function criarLocal($dados)
+    {
+        $imagem_principal = $dados['imagem_principal'] ?? '';
+        $nome = $dados['nome'] ?? '';
+        $tipo = $dados['tipo'] ?? '';
+        $numero = $dados['numero'] ?? '';
+        $instagram = $dados['instagram'] ?? '';
+        $linkInstagram = $dados['linkInstagram'] ?? '';
+        $descricao = $dados['descricao'] ?? '';
+        $possui_restaurante = $dados['restaurante'] ?? 'nao';
+
+        return $this->model->criarLocal($imagem_principal, $nome, $tipo, $numero, $instagram, $linkInstagram, $descricao, $possui_restaurante);
+    }
+
+    public function excluirLugar($id){
+        return $this->model->excluirLugar($id);
+    }
 }
