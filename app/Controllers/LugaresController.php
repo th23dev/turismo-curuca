@@ -1,17 +1,28 @@
 <?php
 require_once '../Models/LugaresModel.php';
-class LugaresController {
+class LugaresController
+{
     private $model;
     private $tipo;
 
-    public function __construct($conexao, $tipo) {
+    public function __construct($conexao)
+    {
         $this->model = new LugaresModel($conexao);
-        $this->tipo = $tipo;
     }
 
-public function buscarLugares() {
+    public function buscarLugares($tipo)
+    {
         $search = isset($_POST['search']) ? $_POST['search'] : '';
-        return $this->model->buscarLugares($search, $this->tipo);
+        return $this->model->buscarLugares($search, $tipo);
+    }
+
+    public function buscarTodosOsLugares()
+    {
+        return $this->model->buscarTodosOsLugares();
+    }
+
+    public function buscarLugar($id)
+    {
+        return $this->model->buscarLugar($id);
     }
 }
-

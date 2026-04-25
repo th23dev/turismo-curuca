@@ -2,9 +2,9 @@
 include '../Core/conexao.php';
 require_once '../Controllers/LugaresController.php'; 
 
-$controller = new LugaresController($pdo, 'hotel');
+$controller = new LugaresController($pdo);
 $search = $_POST['search'] ?? $_GET['search'] ?? '';
-$lugares = $controller->buscarLugares();
+$lugares = $controller->buscarLugares('hotel');
 ?>
 
 <!DOCTYPE html>
@@ -68,8 +68,8 @@ $lugares = $controller->buscarLugares();
                <div class="carousel-image" style="background-image: url('<?php echo $imagem; ?>');"></div>
                <?php endforeach; ?>
             </div>
-            <button class="carousel-btn prev" onclick="prevImage('hotel-<?php echo $lugar['id']; ?>')">&10094;</button>
-            <button class="carousel-btn next" onclick="nextImage('hotel-<?php echo $lugar['id']; ?>')">&10095;</button>
+            <button class="carousel-btn prev" onclick="prevImage('hotel-<?php echo $lugar['id']; ?>')"> < </button>
+            <button class="carousel-btn next" onclick="nextImage('hotel-<?php echo $lugar['id']; ?>')"> > </button>
             <div class="carousel-indicators">
             </div>
          </div>
@@ -77,7 +77,9 @@ $lugares = $controller->buscarLugares();
             <h2><?php echo $lugar['nome']; ?></h2>
             <p><?php echo $lugar['descricao']; ?></p>
             <div class="info-tags">
+               <?php if(!empty($lugar['numero'])):?>
                <span class="tag"><i class="fas fa-phone"></i><?php echo $lugar['numero']; ?></span>
+               <?php endif; ?>
                <?php if (!empty($lugar['instagram'])): ?>
                <a class="tag insta" href="<?php echo $lugar['linkInstagram']; ?>/" target="_blank">
                   <i class="fab fa-instagram"></i><?php echo $lugar['instagram']; ?>

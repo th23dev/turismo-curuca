@@ -1,7 +1,20 @@
 <?php
+include('../Core/conexao.php');
 include('../Controllers/protect.php');
-?>
+include('../Controllers/LugaresController.php');
 
+$controller = new LugaresController($pdo);
+
+// Verifica se existe filtro via GET
+$tipo = isset($_GET['tipo']) ? $_GET['tipo'] : null;
+
+if ($tipo) {
+   $lugares = $controller->buscarLugares($tipo);
+} else {
+   $lugares = $controller->buscarTodosOsLugares();
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,7 +44,35 @@ include('../Controllers/protect.php');
       </div>
    </nav>
 
-   <main style="min-height: 80dvh;">
+   <main>
+      <section id="functions-section">
+         <div class="container" id="lugares">
+            <div class="functions">
+               <h2>Lugares</h2>
+
+               <div class="filtros">
+                  <!-- Links agora passam o parâmetro tipo -->
+                  <a href="admin.php?tipo=hotel">Hotéis</a>
+                  <a href="admin.php?tipo=igarape">Igarapés</a>
+                  <a href="admin.php?tipo=praia">Praias</a>
+                  <!-- Link para mostrar todos -->
+                  <a href="admin.php">Todos</a>
+               </div>
+
+               <button class="ver-mais" id="ver-mais-lugares">Ver mais <i class="fas fa-eye"></i></button>
+            </div>
+
+            <div class="cards">
+               <div class="card-lugar" id="add-lugar"><i class="fas fa-plus"></i></div>
+               <?php foreach ($lugares as $lugar): ?>
+                  <div class="card-lugar" style="background: url('<?= $lugar['imagem_principal']; ?>') no-repeat center center / cover;">
+                     <?php echo $lugar['nome']; ?>
+                     <a href="editar.php?id=<?php echo $lugar['id']; ?>">Editar</a>
+                  </div>
+               <?php endforeach ?>
+            </div>
+         </div>
+      </section>
    </main>
 
    <?php include 'components/footer.php'; ?>
@@ -39,5 +80,6 @@ include('../Controllers/protect.php');
 </body>
 <script src="../../public/js/script.js"></script>
 <script src="../js/menu.js"></script>
+<script src="../../public/js/admin.js"></script>
 
 </html>

@@ -2,9 +2,9 @@
 include '../Core/conexao.php';
 require_once '../Controllers/LugaresController.php'; 
 
-$controller = new LugaresController($pdo, 'praia');
+$controller = new LugaresController($pdo);
 $search = $_POST['search'] ?? $_GET['search'] ?? '';
-$lugares = $controller->buscarLugares();
+$lugares = $controller->buscarLugares('praia');
 ?>
 
 <!DOCTYPE html>
@@ -44,28 +44,32 @@ $lugares = $controller->buscarLugares();
          <div class="cards-grid">
             <?php if ($lugares > 0): ?>
                <?php foreach ($lugares as $lugar): ?>
-                  <div class="card" onclick="openModal('praia-<?php echo $lugar['id']; ?>')">
+                  <div class="card" onclick="openModal('hotel-<?php echo $lugar['id']; ?>')">
                      <img src="<?php echo $lugar['imagem_principal']; ?>" alt="<?php echo $lugar['nome']; ?>">
                      <h3><?php echo $lugar['nome']; ?></h3>
                   </div>
                <?php endforeach; ?>
             <?php else: ?>
-               <p style="padding:20px;">Nenhum praia encontrada para "<strong><?php echo htmlspecialchars($search ?: 'nenhum termo'); ?></strong>".</p>
+               <p style="padding:20px;">Nenhuma praia encontrado para "<strong><?php echo htmlspecialchars($search ?: 'nenhum termo'); ?></strong>".</p>
             <?php endif; ?>
          </div>
       </section>
    </main>
 
    <?php foreach ($lugares as $lugar): ?>
-   <div id="modal-praia-<?php echo $lugar['id']; ?>" class="modal">
+   <div id="modal-hotel-<?php echo $lugar['id']; ?>" class="modal">
       <div class="modal-box">
-         <span class="close" onclick="closeModal('praia-<?php echo $lugar['id']; ?>')">&times;</span>
+         <span class="close" onclick="closeModal('hotel-<?php echo $lugar['id']; ?>')">&times;</span>
          <div class="image-carousel">
             <div class="carousel-images">
                <div class="carousel-image" style="background-image: url('<?php echo $lugar['imagem_principal']; ?>');"></div>
+               <!-- imagens com join para cada local, como fazer para mostrar todas as imagens treladas? -->
+               <?php foreach ($lugar['url'] as $imagem): ?>
+               <div class="carousel-image" style="background-image: url('<?php echo $imagem; ?>');"></div>
+               <?php endforeach; ?>
             </div>
-            <button class="carousel-btn prev" onclick="prevImage('praia-<?php echo $lugar['id']; ?>')">&10094;</button>
-            <button class="carousel-btn next" onclick="nextImage('praia-<?php echo $lugar['id']; ?>')">&10095;</button>
+            <button class="carousel-btn prev" onclick="prevImage('hotel-<?php echo $lugar['id']; ?>')"> < </button>
+            <button class="carousel-btn next" onclick="nextImage('hotel-<?php echo $lugar['id']; ?>')"> > </button>
             <div class="carousel-indicators">
             </div>
          </div>
@@ -73,9 +77,12 @@ $lugares = $controller->buscarLugares();
             <h2><?php echo $lugar['nome']; ?></h2>
             <p><?php echo $lugar['descricao']; ?></p>
             <div class="info-tags">
+               <?php if(!empty($lugar['numero'])):?>
+               <span class="tag"><i class="fas fa-phone"></i><?php echo $lugar['numero']; ?></span>
+               <?php endif; ?>
                <?php if (!empty($lugar['instagram'])): ?>
-               <a class="tag insta" href="https://www.instagram.com/<?php echo $lugar['instagram']; ?>/" target="_blank">
-                  <i class="fab fa-instagram"></i>@<?php echo $lugar['instagram']; ?>
+               <a class="tag insta" href="<?php echo $lugar['linkInstagram']; ?>/" target="_blank">
+                  <i class="fab fa-instagram"></i><?php echo $lugar['instagram']; ?>
                </a>
                <?php endif; ?>
                <?php if ($lugar['possui_restaurante']): ?>
